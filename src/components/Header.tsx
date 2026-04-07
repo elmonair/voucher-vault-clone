@@ -20,8 +20,51 @@ const categories = [
   { icon: MoreHorizontal, label: "All gift cards" },
 ];
 
-const iptvItems = [
-  "Strong 8K", "Trex", "Neo 4K", "Magnum", "Crystal",
+const iptvItems = ["Strong 8K", "Trex", "Neo 4K", "Magnum", "Crystal"];
+
+const subscriptionItems = [
+  "Netflix", "Spotify", "Disney+", "YouTube Premium", "Amazon Prime",
+  "HBO Max", "Apple TV+", "Crunchyroll", "DAZN", "Hulu",
+];
+
+const giftCardItems = [
+  "Amazon", "Apple / iTunes", "Google Play", "Steam", "PlayStation Store",
+  "Xbox Store", "Netflix", "Spotify", "Uber", "Walmart",
+  "Target", "Visa", "Mastercard", "eBay", "Zalando",
+];
+
+const playstationItems = [
+  "PS Plus Essential", "PS Plus Extra", "PS Plus Premium",
+  "PSN Gift Card $10", "PSN Gift Card $25", "PSN Gift Card $50",
+  "PSN Gift Card $100", "PS Now", "PS VR2 Credits",
+];
+
+const xboxItems = [
+  "Xbox Game Pass Ultimate", "Xbox Game Pass Core", "Xbox Live Gold",
+  "Xbox Gift Card $10", "Xbox Gift Card $25", "Xbox Gift Card $50",
+  "Xbox Gift Card $100", "EA Play", "Xbox Game Pass PC",
+];
+
+const nintendoItems = [
+  "Nintendo eShop $10", "Nintendo eShop $20", "Nintendo eShop $35",
+  "Nintendo eShop $50", "Nintendo Switch Online", "Nintendo Switch Online Family",
+];
+
+const pcGamesItems = [
+  "Steam Wallet", "EA App", "Ubisoft Connect", "Epic Games",
+  "GOG", "Blizzard Balance", "Riot Points", "Valorant Points",
+  "Minecraft Java", "Windows Store",
+];
+
+const topUpItems = [
+  "PUBG UC", "Free Fire Diamonds", "Mobile Legends Diamonds",
+  "Genshin Impact Genesis Crystals", "Roblox Robux", "Fortnite V-Bucks",
+  "Clash of Clans Gems", "Brawl Stars Gems", "Coin Master Spins",
+];
+
+const dealsItems = [
+  "Flash Sales", "Bundle Deals", "Clearance", "Weekly Specials",
+  "New Arrivals", "Best Sellers", "Under $10", "Under $25",
 ];
 
 const gamingTrending = [
@@ -71,7 +114,7 @@ const brandsItems = [
   "Global Experiences Card (127)", "Lastminute (124)", "LEGO (122)",
 ];
 
-type DropdownType = "categories" | "gaming" | "brands" | "iptv" | null;
+type DropdownType = "categories" | "gaming" | "brands" | "iptv" | "subscriptions" | "giftcards" | "playstation" | "xbox" | "nintendo" | "pcgames" | "topups" | "deals" | null;
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<DropdownType>(null);
@@ -137,14 +180,14 @@ const Header = () => {
           <ul className="flex items-center gap-2 overflow-x-auto scrollbar-hide text-sm font-medium">
             {[
               { label: "IPTV", dropdown: "iptv" as DropdownType },
-              { label: "Subscriptions", dropdown: null as DropdownType },
-              { label: "Gift Cards", dropdown: null as DropdownType },
-              { label: "PlayStation", dropdown: null as DropdownType },
-              { label: "Xbox", dropdown: null as DropdownType },
-              { label: "Nintendo", dropdown: null as DropdownType },
-              { label: "PC Games", dropdown: null as DropdownType },
-              { label: "Top Ups", dropdown: null as DropdownType },
-              { label: "Deals", dropdown: null as DropdownType },
+              { label: "Subscriptions", dropdown: "subscriptions" as DropdownType },
+              { label: "Gift Cards", dropdown: "giftcards" as DropdownType },
+              { label: "PlayStation", dropdown: "playstation" as DropdownType },
+              { label: "Xbox", dropdown: "xbox" as DropdownType },
+              { label: "Nintendo", dropdown: "nintendo" as DropdownType },
+              { label: "PC Games", dropdown: "pcgames" as DropdownType },
+              { label: "Top Ups", dropdown: "topups" as DropdownType },
+              { label: "Deals", dropdown: "deals" as DropdownType },
             ].map(({ label, dropdown }) => (
               <li key={label}>
                 <button
@@ -162,11 +205,32 @@ const Header = () => {
         {openDropdown && (
           <div className="absolute left-0 right-0 bg-card border-b border-border shadow-lg z-50 animate-in fade-in slide-in-from-top-1 duration-200">
             <div className="max-w-7xl mx-auto px-4 py-6">
-              {openDropdown === "iptv" && (
+              {["iptv", "subscriptions", "playstation", "xbox", "nintendo", "deals"].includes(openDropdown) && (
                 <div className="space-y-1">
-                  {iptvItems.map((item) => (
+                  {(({
+                    iptv: iptvItems,
+                    subscriptions: subscriptionItems,
+                    playstation: playstationItems,
+                    xbox: xboxItems,
+                    nintendo: nintendoItems,
+                    deals: dealsItems,
+                  } as Record<string, string[]>)[openDropdown] || []).map((item) => (
                     <a key={item} href="#" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors py-2.5 px-3 rounded-lg">
                       <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/50" />
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {["giftcards", "pcgames", "topups"].includes(openDropdown) && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-2">
+                  {(({
+                    giftcards: giftCardItems,
+                    pcgames: pcGamesItems,
+                    topups: topUpItems,
+                  } as Record<string, string[]>)[openDropdown] || []).map((item) => (
+                    <a key={item} href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2 truncate">
                       {item}
                     </a>
                   ))}
