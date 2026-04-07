@@ -177,7 +177,7 @@ const Header = () => {
       {/* Navigation */}
       <div ref={dropdownRef} className="relative">
         <nav className="max-w-7xl mx-auto px-4 pb-2">
-          <ul className="flex items-center gap-2 overflow-x-auto scrollbar-hide text-sm font-medium">
+          <ul className="flex items-center gap-2 text-sm font-medium flex-wrap">
             {[
               { label: "IPTV", dropdown: "iptv" as DropdownType, items: iptvItems },
               { label: "Subscriptions", dropdown: "subscriptions" as DropdownType, items: subscriptionItems },
