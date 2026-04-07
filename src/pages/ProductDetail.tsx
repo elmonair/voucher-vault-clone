@@ -95,7 +95,7 @@ const ProductDetail = () => {
                 )}
               </div>
 
-              <p className="text-xs text-muted-foreground mb-5">{product.sold} sold</p>
+              
 
               {/* Quantity */}
               <div className="mb-5">
@@ -112,27 +112,6 @@ const ProductDetail = () => {
                 Buy now
               </button>
 
-              {/* Seller info */}
-              <div className="border-t border-border pt-4">
-                <p className="text-xs text-muted-foreground mb-2">Sold by</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-sm font-bold text-foreground">
-                      {product.seller.charAt(0).toUpperCase()}
-                    </div>
-                    <span className="text-sm font-medium text-foreground">{product.seller}</span>
-                  </div>
-                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium border ${levelColor[product.sellerLevel] || "bg-secondary text-secondary-foreground"}`}>
-                    {product.sellerLevel}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1 mt-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                  ))}
-                  <span className="text-xs text-muted-foreground ml-1">({product.sold} sales)</span>
-                </div>
-              </div>
 
               {/* Payment methods */}
               <div className="border-t border-border pt-4 mt-4">
