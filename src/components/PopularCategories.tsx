@@ -9,16 +9,16 @@ import catNintendo from "@/assets/cat-nintendo.jpg";
 import catFortnite from "@/assets/cat-fortnite.jpg";
 import catAmazon from "@/assets/cat-amazon.jpg";
 import catGoogleplay from "@/assets/cat-googleplay.jpg";
-import catRoblox from "@/assets/cat-roblox.jpg";
-import catApple from "@/assets/cat-apple.jpg";
+import catRiotaccess from "@/assets/cat-riotaccess.jpg";
+import catRazergold from "@/assets/cat-razergold.jpg";
 
 const popularCategories = [
   { name: "PlayStation", image: catPlaystation },
   { name: "Valorant", image: catValorant },
   { name: "Xbox", image: catXbox },
-  { name: "Roblox", image: catRoblox },
+  { name: "Riot Access", image: catRiotaccess },
   { name: "Uber", image: catUber },
-  { name: "Apple", image: catApple },
+  { name: "Razer Gold", image: catRazergold },
   { name: "Spotify", image: catSpotify },
   { name: "Netflix", image: catNetflix },
   { name: "Nintendo", image: catNintendo },
@@ -36,7 +36,7 @@ const PopularCategories = () => {
           <a
             key={cat.name}
             href="#"
-            className="relative rounded-xl overflow-hidden aspect-square group"
+            className="relative rounded-xl overflow-hidden aspect-[3/2] group"
           >
             <img
               src={cat.image}
