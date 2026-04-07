@@ -133,46 +133,53 @@ const Header = () => {
   const toggle = (type: DropdownType) => setOpenDropdown((prev) => (prev === type ? null : type));
 
   return (
-    <header className="bg-card border-b border-border sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <header className="bg-card sticky top-0 z-50">
+      {/* Thin top accent line */}
+      <div className="h-[3px] bg-primary w-full" />
+      
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-8">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">B</span>
+        <a href="/" className="flex items-center gap-3 shrink-0">
+          <div className="w-10 h-10 border-2 border-primary rounded-lg flex items-center justify-center relative">
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-4 h-2 bg-primary rounded-t-sm" />
+            <span className="text-primary font-bold text-xs mt-1">|||</span>
           </div>
           <div className="hidden sm:block leading-tight">
-            <span className="font-bold text-foreground text-sm">BuySell</span>
+            <span className="font-bold text-foreground text-base tracking-tight">BuySell</span>
             <br />
-            <span className="font-bold text-foreground text-sm">Vouchers</span>
+            <span className="font-bold text-foreground text-base tracking-tight">Vouchers</span>
           </div>
         </a>
 
         {/* Search */}
-        <div className="flex-1 max-w-xl">
+        <div className="flex-1 max-w-2xl">
           <div className="relative">
             <input
               type="text"
-              placeholder="What are you looking for?"
-              className="w-full h-10 pl-4 pr-12 rounded-full border border-border bg-card text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              placeholder="What are you looking for? Just type here"
+              className="w-full h-12 pl-6 pr-14 rounded-full bg-secondary border-0 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
-            <button className="absolute right-1 top-1 h-8 w-8 rounded-full bg-primary flex items-center justify-center hover:opacity-90 transition-opacity">
+            <button className="absolute right-1.5 top-1.5 h-9 w-9 rounded-full bg-primary flex items-center justify-center hover:opacity-90 transition-opacity shadow-md">
               <Search className="w-4 h-4 text-primary-foreground" />
             </button>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-4 shrink-0">
-          <button className="hidden md:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-            <User className="w-4 h-4" />
+        <div className="flex items-center gap-6 shrink-0">
+          <button className="hidden md:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">
+            <User className="w-5 h-5" />
             <span>LOG IN / REGISTER</span>
           </button>
-          <button className="hidden md:flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-            <span>🇬🇧</span>
+          <button className="hidden md:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium">
+            <span className="text-lg">🇬🇧</span>
             <span>ENG / USD</span>
           </button>
         </div>
       </div>
+
+      {/* Bottom border */}
+      <div className="h-px bg-border w-full" />
 
       {/* Navigation */}
       <div ref={dropdownRef} className="relative">
