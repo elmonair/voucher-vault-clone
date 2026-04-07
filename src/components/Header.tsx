@@ -20,8 +20,51 @@ const categories = [
   { icon: MoreHorizontal, label: "All gift cards" },
 ];
 
-const iptvItems = [
-  "Strong 8K", "Trex", "Neo 4K", "Magnum", "Crystal",
+const iptvItems = ["Strong 8K", "Trex", "Neo 4K", "Magnum", "Crystal"];
+
+const subscriptionItems = [
+  "Netflix", "Spotify", "Disney+", "YouTube Premium", "Amazon Prime",
+  "HBO Max", "Apple TV+", "Crunchyroll", "DAZN", "Hulu",
+];
+
+const giftCardItems = [
+  "Amazon", "Apple / iTunes", "Google Play", "Steam", "PlayStation Store",
+  "Xbox Store", "Netflix", "Spotify", "Uber", "Walmart",
+  "Target", "Visa", "Mastercard", "eBay", "Zalando",
+];
+
+const playstationItems = [
+  "PS Plus Essential", "PS Plus Extra", "PS Plus Premium",
+  "PSN Gift Card $10", "PSN Gift Card $25", "PSN Gift Card $50",
+  "PSN Gift Card $100", "PS Now", "PS VR2 Credits",
+];
+
+const xboxItems = [
+  "Xbox Game Pass Ultimate", "Xbox Game Pass Core", "Xbox Live Gold",
+  "Xbox Gift Card $10", "Xbox Gift Card $25", "Xbox Gift Card $50",
+  "Xbox Gift Card $100", "EA Play", "Xbox Game Pass PC",
+];
+
+const nintendoItems = [
+  "Nintendo eShop $10", "Nintendo eShop $20", "Nintendo eShop $35",
+  "Nintendo eShop $50", "Nintendo Switch Online", "Nintendo Switch Online Family",
+];
+
+const pcGamesItems = [
+  "Steam Wallet", "EA App", "Ubisoft Connect", "Epic Games",
+  "GOG", "Blizzard Balance", "Riot Points", "Valorant Points",
+  "Minecraft Java", "Windows Store",
+];
+
+const topUpItems = [
+  "PUBG UC", "Free Fire Diamonds", "Mobile Legends Diamonds",
+  "Genshin Impact Genesis Crystals", "Roblox Robux", "Fortnite V-Bucks",
+  "Clash of Clans Gems", "Brawl Stars Gems", "Coin Master Spins",
+];
+
+const dealsItems = [
+  "Flash Sales", "Bundle Deals", "Clearance", "Weekly Specials",
+  "New Arrivals", "Best Sellers", "Under $10", "Under $25",
 ];
 
 const gamingTrending = [
