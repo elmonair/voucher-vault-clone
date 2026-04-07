@@ -114,7 +114,7 @@ const brandsItems = [
   "Global Experiences Card (127)", "Lastminute (124)", "LEGO (122)",
 ];
 
-type DropdownType = "categories" | "gaming" | "brands" | "iptv" | null;
+type DropdownType = "categories" | "gaming" | "brands" | "iptv" | "subscriptions" | "giftcards" | "playstation" | "xbox" | "nintendo" | "pcgames" | "topups" | "deals" | null;
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<DropdownType>(null);
@@ -180,14 +180,14 @@ const Header = () => {
           <ul className="flex items-center gap-2 overflow-x-auto scrollbar-hide text-sm font-medium">
             {[
               { label: "IPTV", dropdown: "iptv" as DropdownType },
-              { label: "Subscriptions", dropdown: null as DropdownType },
-              { label: "Gift Cards", dropdown: null as DropdownType },
-              { label: "PlayStation", dropdown: null as DropdownType },
-              { label: "Xbox", dropdown: null as DropdownType },
-              { label: "Nintendo", dropdown: null as DropdownType },
-              { label: "PC Games", dropdown: null as DropdownType },
-              { label: "Top Ups", dropdown: null as DropdownType },
-              { label: "Deals", dropdown: null as DropdownType },
+              { label: "Subscriptions", dropdown: "subscriptions" as DropdownType },
+              { label: "Gift Cards", dropdown: "giftcards" as DropdownType },
+              { label: "PlayStation", dropdown: "playstation" as DropdownType },
+              { label: "Xbox", dropdown: "xbox" as DropdownType },
+              { label: "Nintendo", dropdown: "nintendo" as DropdownType },
+              { label: "PC Games", dropdown: "pcgames" as DropdownType },
+              { label: "Top Ups", dropdown: "topups" as DropdownType },
+              { label: "Deals", dropdown: "deals" as DropdownType },
             ].map(({ label, dropdown }) => (
               <li key={label}>
                 <button
