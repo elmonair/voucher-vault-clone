@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 interface ProductCardProps {
+  id: string;
   image: string;
   title: string;
   price: string;
@@ -14,6 +17,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({
+  id,
   image,
   title,
   price,
@@ -28,10 +32,7 @@ const ProductCard = ({
   bonus = false,
 }: ProductCardProps) => {
   return (
-    <a
-      href="#"
-      className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow overflow-hidden flex flex-col"
-    >
+    <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow overflow-hidden flex flex-col">
       {/* Image area */}
       <div className="relative p-4 pb-2 flex justify-center">
         <div className="w-20 h-20 rounded-lg overflow-hidden bg-secondary flex items-center justify-center">
@@ -76,11 +77,14 @@ const ProductCard = ({
           </span>
         </div>
 
-        <button className="mt-3 w-full py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity">
+        <Link
+          to={`/product/${id}`}
+          className="mt-3 w-full py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity text-center block"
+        >
           Buy now
-        </button>
+        </Link>
       </div>
-    </a>
+    </div>
   );
 };
 
