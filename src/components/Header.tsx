@@ -179,103 +179,37 @@ const Header = () => {
         <nav className="max-w-7xl mx-auto px-4 pb-2">
           <ul className="flex items-center gap-2 overflow-x-auto scrollbar-hide text-sm font-medium">
             {[
-              { label: "IPTV", dropdown: "iptv" as DropdownType },
-              { label: "Subscriptions", dropdown: "subscriptions" as DropdownType },
-              { label: "Gift Cards", dropdown: "giftcards" as DropdownType },
-              { label: "PlayStation", dropdown: "playstation" as DropdownType },
-              { label: "Xbox", dropdown: "xbox" as DropdownType },
-              { label: "Nintendo", dropdown: "nintendo" as DropdownType },
-              { label: "PC Games", dropdown: "pcgames" as DropdownType },
-              { label: "Top Ups", dropdown: "topups" as DropdownType },
-              { label: "Deals", dropdown: "deals" as DropdownType },
-            ].map(({ label, dropdown }) => (
-              <li key={label}>
+              { label: "IPTV", dropdown: "iptv" as DropdownType, items: iptvItems },
+              { label: "Subscriptions", dropdown: "subscriptions" as DropdownType, items: subscriptionItems },
+              { label: "Gift Cards", dropdown: "giftcards" as DropdownType, items: giftCardItems },
+              { label: "PlayStation", dropdown: "playstation" as DropdownType, items: playstationItems },
+              { label: "Xbox", dropdown: "xbox" as DropdownType, items: xboxItems },
+              { label: "Nintendo", dropdown: "nintendo" as DropdownType, items: nintendoItems },
+              { label: "PC Games", dropdown: "pcgames" as DropdownType, items: pcGamesItems },
+              { label: "Top Ups", dropdown: "topups" as DropdownType, items: topUpItems },
+              { label: "Deals", dropdown: "deals" as DropdownType, items: dealsItems },
+            ].map(({ label, dropdown, items }) => (
+              <li key={label} className="relative">
                 <button
                   onClick={() => dropdown && toggle(dropdown)}
                   className={`px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap flex items-center gap-1 ${openDropdown === dropdown ? "text-foreground bg-secondary" : "text-muted-foreground hover:text-foreground"}`}
                 >
                   {label} <ChevronDown className="w-3 h-3" />
                 </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Dropdown panels */}
-        {openDropdown && (
-          <div className="absolute left-0 right-0 bg-card border-b border-border shadow-lg z-50 animate-in fade-in slide-in-from-top-1 duration-200">
-            <div className="max-w-7xl mx-auto px-4 py-6">
-              {["iptv", "subscriptions", "playstation", "xbox", "nintendo", "deals"].includes(openDropdown) && (
-                <div className="space-y-1">
-                  {(({
-                    iptv: iptvItems,
-                    subscriptions: subscriptionItems,
-                    playstation: playstationItems,
-                    xbox: xboxItems,
-                    nintendo: nintendoItems,
-                    deals: dealsItems,
-                  } as Record<string, string[]>)[openDropdown] || []).map((item) => (
-                    <a key={item} href="#" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors py-2.5 px-3 rounded-lg">
-                      <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/50" />
-                      {item}
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              {["giftcards", "pcgames", "topups"].includes(openDropdown) && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-2">
-                  {(({
-                    giftcards: giftCardItems,
-                    pcgames: pcGamesItems,
-                    topups: topUpItems,
-                  } as Record<string, string[]>)[openDropdown] || []).map((item) => (
-                    <a key={item} href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2 truncate">
-                      {item}
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              {openDropdown === "categories" && (
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-4">
-                  {categories.map(({ icon: Icon, label }) => (
-                    <a key={label} href="#" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors py-1">
-                      <Icon className="w-4 h-4 shrink-0" />
-                      {label}
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              {(openDropdown === "gaming" || openDropdown === "brands") && (
-                <div className="flex gap-8">
-                  {/* Trending sidebar */}
-                  <div className="w-48 shrink-0 border-r border-border pr-6">
-                    <p className="text-xs font-bold text-primary uppercase tracking-wider mb-3">Trending</p>
-                    <div className="space-y-1">
-                      {(openDropdown === "gaming" ? gamingTrending : brandsTrending).map((item) => (
-                        <a key={item.name} href="#" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors py-1.5">
-                          <span className="text-base">{item.icon}</span>
-                          {item.name}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Items grid */}
-                  <div className="flex-1 grid grid-cols-3 gap-x-12 gap-y-1.5 content-start">
-                    {(openDropdown === "gaming" ? gamingItems : brandsItems).map((item) => (
-                      <a key={item} href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-1.5 truncate">
+                {openDropdown === dropdown && (
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-card border border-border rounded-lg shadow-lg z-50 animate-in fade-in slide-in-from-top-1 duration-200 py-2">
+                    {items.map((item) => (
+                      <a key={item} href="#" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors py-2 px-4">
+                        <ChevronRight className="w-3 h-3 text-muted-foreground/50" />
                         {item}
                       </a>
                     ))}
                   </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </header>
   );
