@@ -130,46 +130,14 @@ const Header = () => {
       {/* Navigation */}
       <div ref={dropdownRef} className="relative">
         <nav className="max-w-7xl mx-auto px-4 pb-2">
-          <ul className="flex items-center gap-1 overflow-x-auto scrollbar-hide text-sm font-medium">
-            <li>
-              <a href="#" className="px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap text-foreground">
-                All gift cards
-              </a>
-            </li>
-            <li>
-              <button
-                onClick={() => toggle("categories")}
-                className={`px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap flex items-center gap-1 ${openDropdown === "categories" ? "text-primary" : "text-foreground"}`}
-              >
-                Categories <ChevronDown className="w-3 h-3" />
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => toggle("gaming")}
-                className={`px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap flex items-center gap-1 ${openDropdown === "gaming" ? "text-primary" : "text-foreground"}`}
-              >
-                Gaming <ChevronDown className="w-3 h-3" />
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => toggle("brands")}
-                className={`px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap flex items-center gap-1 ${openDropdown === "brands" ? "text-primary" : "text-foreground"}`}
-              >
-                Brands <ChevronDown className="w-3 h-3" />
-              </button>
-            </li>
-            <li>
-              <a href="#" className="px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap text-primary flex items-center gap-1">
-                ✅ Official Store
-              </a>
-            </li>
-            <li>
-              <a href="#" className="px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap text-primary flex items-center gap-1">
-                🎁 Promotions
-              </a>
-            </li>
+          <ul className="flex items-center gap-2 overflow-x-auto scrollbar-hide text-sm font-medium">
+            {["IPTV", "Subscriptions", "Gift Cards", "PlayStation", "Xbox", "Nintendo", "PC Games", "Top Ups", "Deals"].map((label) => (
+              <li key={label}>
+                <button className="px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap flex items-center gap-1 text-muted-foreground hover:text-foreground">
+                  {label} <ChevronDown className="w-3 h-3" />
+                </button>
+              </li>
+            ))}
           </ul>
         </nav>
 
