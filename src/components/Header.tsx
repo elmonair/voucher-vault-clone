@@ -1,4 +1,4 @@
-import { Search, User, ChevronDown, Gamepad2, Film, ShoppingBag, UtensilsCrossed, Plane, Trophy, Cpu, Home, Sparkles, BookOpen, Smartphone, CreditCard, Monitor, Download, MoreHorizontal } from "lucide-react";
+import { Search, User, ChevronDown, ChevronRight, Gamepad2, Film, ShoppingBag, UtensilsCrossed, Plane, Trophy, Cpu, Home, Sparkles, BookOpen, Smartphone, CreditCard, Monitor, Download, MoreHorizontal } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 const categories = [
@@ -18,6 +18,10 @@ const categories = [
   { icon: Monitor, label: "Software" },
   { icon: Download, label: "Downloads" },
   { icon: MoreHorizontal, label: "All gift cards" },
+];
+
+const iptvItems = [
+  "Strong 8K", "Trex", "Neo 4K", "Magnum", "Crystal",
 ];
 
 const gamingTrending = [
@@ -67,7 +71,7 @@ const brandsItems = [
   "Global Experiences Card (127)", "Lastminute (124)", "LEGO (122)",
 ];
 
-type DropdownType = "categories" | "gaming" | "brands" | null;
+type DropdownType = "categories" | "gaming" | "brands" | "iptv" | null;
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState<DropdownType>(null);
@@ -131,9 +135,22 @@ const Header = () => {
       <div ref={dropdownRef} className="relative">
         <nav className="max-w-7xl mx-auto px-4 pb-2">
           <ul className="flex items-center gap-2 overflow-x-auto scrollbar-hide text-sm font-medium">
-            {["IPTV", "Subscriptions", "Gift Cards", "PlayStation", "Xbox", "Nintendo", "PC Games", "Top Ups", "Deals"].map((label) => (
+            {[
+              { label: "IPTV", dropdown: "iptv" as DropdownType },
+              { label: "Subscriptions", dropdown: null as DropdownType },
+              { label: "Gift Cards", dropdown: null as DropdownType },
+              { label: "PlayStation", dropdown: null as DropdownType },
+              { label: "Xbox", dropdown: null as DropdownType },
+              { label: "Nintendo", dropdown: null as DropdownType },
+              { label: "PC Games", dropdown: null as DropdownType },
+              { label: "Top Ups", dropdown: null as DropdownType },
+              { label: "Deals", dropdown: null as DropdownType },
+            ].map(({ label, dropdown }) => (
               <li key={label}>
-                <button className="px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap flex items-center gap-1 text-muted-foreground hover:text-foreground">
+                <button
+                  onClick={() => dropdown && toggle(dropdown)}
+                  className={`px-3 py-2 rounded-lg hover:bg-secondary transition-colors whitespace-nowrap flex items-center gap-1 ${openDropdown === dropdown ? "text-foreground bg-secondary" : "text-muted-foreground hover:text-foreground"}`}
+                >
                   {label} <ChevronDown className="w-3 h-3" />
                 </button>
               </li>
@@ -145,6 +162,17 @@ const Header = () => {
         {openDropdown && (
           <div className="absolute left-0 right-0 bg-card border-b border-border shadow-lg z-50 animate-in fade-in slide-in-from-top-1 duration-200">
             <div className="max-w-7xl mx-auto px-4 py-6">
+              {openDropdown === "iptv" && (
+                <div className="space-y-1">
+                  {iptvItems.map((item) => (
+                    <a key={item} href="#" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors py-2.5 px-3 rounded-lg">
+                      <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/50" />
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              )}
+
               {openDropdown === "categories" && (
                 <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-4">
                   {categories.map(({ icon: Icon, label }) => (
