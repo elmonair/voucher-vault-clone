@@ -205,11 +205,32 @@ const Header = () => {
         {openDropdown && (
           <div className="absolute left-0 right-0 bg-card border-b border-border shadow-lg z-50 animate-in fade-in slide-in-from-top-1 duration-200">
             <div className="max-w-7xl mx-auto px-4 py-6">
-              {openDropdown === "iptv" && (
+              {["iptv", "subscriptions", "playstation", "xbox", "nintendo", "deals"].includes(openDropdown) && (
                 <div className="space-y-1">
-                  {iptvItems.map((item) => (
+                  {(({
+                    iptv: iptvItems,
+                    subscriptions: subscriptionItems,
+                    playstation: playstationItems,
+                    xbox: xboxItems,
+                    nintendo: nintendoItems,
+                    deals: dealsItems,
+                  } as Record<string, string[]>)[openDropdown] || []).map((item) => (
                     <a key={item} href="#" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors py-2.5 px-3 rounded-lg">
                       <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/50" />
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {["giftcards", "pcgames", "topups"].includes(openDropdown) && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-2">
+                  {(({
+                    giftcards: giftCardItems,
+                    pcgames: pcGamesItems,
+                    topups: topUpItems,
+                  } as Record<string, string[]>)[openDropdown] || []).map((item) => (
+                    <a key={item} href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2 truncate">
                       {item}
                     </a>
                   ))}
