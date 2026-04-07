@@ -1,4 +1,4 @@
-import { Search, User, ChevronDown, Gamepad2, Film, ShoppingBag, UtensilsCrossed, Plane, Trophy, Cpu, Home, Sparkles, BookOpen, Smartphone, CreditCard, Monitor, Download, MoreHorizontal } from "lucide-react";
+import { Search, User, ChevronDown, ChevronRight, Gamepad2, Film, ShoppingBag, UtensilsCrossed, Plane, Trophy, Cpu, Home, Sparkles, BookOpen, Smartphone, CreditCard, Monitor, Download, MoreHorizontal } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 const categories = [
