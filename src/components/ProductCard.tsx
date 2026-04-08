@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BadgeCheck } from "lucide-react";
 
 interface ProductCardProps {
   id: string;
@@ -16,6 +17,13 @@ interface ProductCardProps {
   bonus?: boolean;
 }
 
+const levelColors: Record<string, string> = {
+  Legend: "bg-amber-100 text-amber-800",
+  Hero: "bg-purple-100 text-purple-800",
+  Master: "bg-blue-100 text-blue-800",
+  Gamer: "bg-green-100 text-green-800",
+};
+
 const ProductCard = ({
   id,
   image,
@@ -26,63 +34,71 @@ const ProductCard = ({
   sold,
   seller,
   sellerLevel,
-  region,
   regionFlag,
   promoted = true,
   bonus = false,
 }: ProductCardProps) => {
   return (
     <div className="bg-card rounded-xl border border-border hover:shadow-lg transition-shadow overflow-hidden flex flex-col">
-      {/* Image area */}
-      <div className="relative p-4 pb-2 flex justify-center">
-        <div className="w-20 h-20 rounded-lg overflow-hidden bg-secondary flex items-center justify-center">
-          <img src={image} alt={title} className="w-full h-full object-cover" loading="lazy" width={80} height={80} />
-        </div>
-        <span className="absolute top-3 left-3 text-lg" title={region}>
+      {/* Full-width image */}
+      <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <span className="absolute top-2 left-2 text-base" title="Region">
           {regionFlag}
         </span>
         {bonus && (
-          <span className="absolute top-3 right-3 text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded font-medium">
-            Bonus
+          <span className="absolute top-2 right-2 text-[10px] bg-primary text-primary-foreground px-2 py-0.5 rounded-full font-semibold">
+            🎁 $0.01
+          </span>
+        )}
+        {promoted && (
+          <span className="absolute bottom-2 right-2 text-[10px] bg-red-500/90 text-white px-2 py-0.5 rounded font-medium">
+            ⬆ PROMOTED
           </span>
         )}
       </div>
 
       {/* Content */}
-      <div className="px-4 pb-4 flex flex-col flex-1">
-        {promoted && (
-          <span className="text-xs text-primary font-medium mb-1">Promoted</span>
-        )}
-        <h3 className="text-sm font-semibold text-foreground line-clamp-2 mb-2 leading-tight">
+      <div className="px-3 py-3 flex flex-col flex-1">
+        <h3 className="text-sm font-semibold text-foreground line-clamp-2 mb-1 leading-tight min-h-[2.5rem]">
           {title}
         </h3>
         <p className="text-xs text-muted-foreground mb-2">{sold} Sold</p>
 
-        <div className="mt-auto flex items-end justify-between">
-          <div>
-            <span className="text-lg font-bold text-foreground">{price}</span>
-            {originalPrice && (
-              <span className="ml-2 text-xs text-muted-foreground line-through">{originalPrice}</span>
-            )}
-            {discount && (
-              <span className="ml-1 text-xs font-semibold text-discount">{discount}</span>
-            )}
-          </div>
+        {/* Price row */}
+        <div className="flex items-baseline gap-1.5 mb-3">
+          <span className="text-lg font-bold text-foreground">{price}</span>
+          {originalPrice && (
+            <span className="text-xs text-muted-foreground line-through">{originalPrice}</span>
+          )}
+          {discount && (
+            <span className="text-xs font-semibold text-red-500">{discount}</span>
+          )}
         </div>
 
-        <div className="mt-3 flex items-center justify-between">
-          <span className="text-xs text-muted-foreground truncate max-w-[60%]">{seller}</span>
-          <span className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-medium">
-            {sellerLevel}
-          </span>
-        </div>
-
+        {/* Buy now button */}
         <Link
           to={`/product/${id}`}
-          className="mt-3 w-full py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity text-center block"
+          className="w-full py-2 rounded-lg border-2 border-primary text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors text-center block mb-3"
         >
           Buy now
         </Link>
+
+        {/* Seller info */}
+        <div className="border-t border-border pt-2 flex items-center justify-between">
+          <div className="flex items-center gap-1 min-w-0">
+            <span className="text-xs text-foreground font-medium truncate">{seller}</span>
+            <BadgeCheck className="w-3.5 h-3.5 text-primary shrink-0" />
+          </div>
+          <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold shrink-0 ${levelColors[sellerLevel] || "bg-secondary text-secondary-foreground"}`}>
+            {sellerLevel.toUpperCase()}
+          </span>
+        </div>
       </div>
     </div>
   );
